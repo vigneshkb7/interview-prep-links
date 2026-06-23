@@ -11,74 +11,13 @@
 
 Your edge: You already know async JS and HTTP deeply — streaming LLM responses is just SSE over fetch.
 
-
-**Prompt engineering (production level)**
-
-
-[ ] Structured output: JSON mode, function calling / tool use
-[ ] System prompt design, persona, constraints
-[ ] Output formatting contracts (XML, JSON, Markdown)
-[ ] Prompt injection defense, output sanitization
-[ ] Prompt versioning — treating prompts like code
-[ ] Evals: building test suites for prompt quality
-[ ] Anthropic OpenAI LangSmith
-
-**Embeddings & vector search**
-
-[ ] The semantic layer under most AI products
-[ ] What embeddings are: dense float vectors, cosine similarity
-[ ] Embedding models: text-embedding-3-small, Cohere, local models
-[ ] Vector DBs: Pinecone, Qdrant, pgvector (pick one deep, know others exist)
-[ ] ANN search: HNSW index, approximate vs exact
-[ ] Chunking strategies: fixed, semantic, recursive, sliding window
-[ ] Metadata filtering + hybrid search (BM25 + vector)
-
-
-**RAG pipelines**
-
-[ ] Retrieval-Augmented Generation — every company builds this
-[ ] Ingestion pipeline: load → chunk → embed → store
-[ ] Query pipeline: embed query → ANN search → rerank → prompt
-[ ] Reranking: cross-encoder models (Cohere Rerank, BGE)
-[ ] Advanced RAG: HyDE, parent-child chunks, multi-query retrieval
-[ ] RAG evaluation: context recall, faithfulness, answer relevancy
-[ ] Failure modes: hallucination, missing context, context stuffing
-
-**Agents & tool use**
-
-[ ] The frontier of current AI engineering work
-[ ] ReAct pattern: Reason + Act loop
-[ ] Tool/function calling: schema design, result parsing
-[ ] Multi-step agents with memory (short-term conversation + long-term store)
-[ ] Agent orchestration: LangGraph, CrewAI, custom loops
-[ ] Error handling in agentic loops: retry, fallback, human-in-loop
-Agent eval: trajectory correctness, tool call accuracy
-
-**Orchestration frameworks**
-
-[ ] Know at least one deeply
-[ ] LangChain: chains, memory, retrievers, agents (most asked about)
-[ ] LlamaIndex: document indexing, query engines, nodes
-[ ] LangGraph: stateful multi-agent workflows with checkpointing
-[ ] Vercel AI SDK: streaming UI + RSC integration (your frontend edge)
-[ ] When NOT to use a framework — direct SDK calls for simple flows
-
-**Evals & observability**
-
-[ ] Production AI without evals is flying blind
-[ ] LLM-as-judge: using a model to grade model outputs
-[ ] Golden dataset construction and maintenance
-[ ] Tracing: LangSmith, Langfuse, Braintrust
-[ ] Metrics: latency, cost per query, retrieval precision/recall
-[ ] A/B testing prompts and models in prod
-Regression testing on prompt changes
-
 **AI-native UI patterns**
 
-Streaming UX, generative interfaces
-Streaming text: incremental rendering, cursor animation, token-by-token display
-AI chat interfaces: message threading, history management, context window budget
-Generative UI: rendering structured LLM output as dynamic components
+- [ ]  Streaming UX, generative interfaces
+- [ ] Streaming text: incremental rendering, cursor animation, token-by-token display
+- [ ] AI chat interfaces: message threading, history management, context window budget
+- [ ] Generative UI: rendering structured LLM output as dynamic components
+
 ## LLM API fundamentals
 
 - [ ] How models actually work (just enough)
