@@ -1,13 +1,13 @@
 
 **LLM API fundamentals**
 
-- [ ] How models actually work (just enough)
+- [x] How models actually work (just enough)
 - [ ] Tokens, context windows, attention — mental model only
 - [ ] Prompt engineering: system/user roles, few-shot, chain-of-thought
 - [ ] Temperature, top-p, stop sequences, max_tokens
 - [ ] OpenAI SDK + Anthropic SDK (both — interviewers test either)
 - [ ] Streaming responses with SSE / async iterables
-[]Rate limits, retries, exponential backoff
+- [ ] Rate limits, retries, exponential backoff
 
 Your edge: You already know async JS and HTTP deeply — streaming LLM responses is just SSE over fetch.
 
