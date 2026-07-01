@@ -895,3 +895,477 @@ These concepts appear everywhere:
 
 Try answering these. If you get at least 3/4, we'll move to the next stage: **How embeddings are created mathematically, cosine similarity, vector databases, and how RAG actually works under the hood.**
 
+Absolutely. As an AI Engineer, understanding **Prompt Engineering** is actually more immediately useful than understanding attention math.
+
+Let's start from basics and move toward production-grade prompting.
+
+# What Is Prompt Engineering?
+
+Prompt engineering is the art of structuring instructions so the model behaves the way you want.
+
+Think of an LLM as:
+
+```text
+Model = Brain
+Prompt = Instructions
+```
+
+A powerful model with a poor prompt often performs worse than a smaller model with a well-designed prompt.
+
+---
+
+# Chat Messages and Roles
+
+Modern LLMs receive messages in this structure:
+
+```json
+[
+  {
+    "role": "system",
+    "content": "..."
+  },
+  {
+    "role": "user",
+    "content": "..."
+  },
+  {
+    "role": "assistant",
+    "content": "..."
+  }
+]
+```
+
+---
+
+# 1. System Role
+
+The **system prompt** defines the AI's behavior.
+
+Example:
+
+```text
+You are a senior JavaScript architect with 15 years of experience.
+Answer concisely.
+Provide code examples.
+```
+
+This acts like the model's job description.
+
+---
+
+## Example
+
+### System
+
+```text
+You are a strict DSA tutor.
+Never reveal answers immediately.
+```
+
+### User
+
+```text
+What is binary search?
+```
+
+Response will be influenced by the system prompt.
+
+---
+
+# 2. User Role
+
+This is the actual request.
+
+Example:
+
+```text
+Explain React Suspense.
+```
+
+or
+
+```text
+Generate a Node.js API.
+```
+
+---
+
+# 3. Assistant Role
+
+Previous responses from the model.
+
+Example:
+
+```text
+User:
+Teach me React.
+
+Assistant:
+Let's start with components.
+
+User:
+Continue.
+```
+
+The previous assistant message becomes context.
+
+---
+
+# Hierarchy
+
+The model generally follows:
+
+```text
+System
+   ↓
+Developer
+   ↓
+User
+   ↓
+Assistant History
+```
+
+Higher levels have more authority.
+
+---
+
+# Zero-Shot Prompting
+
+No examples provided.
+
+Example:
+
+```text
+Translate this to Telugu:
+
+Hello World
+```
+
+The model already knows what to do.
+
+---
+
+# Few-Shot Prompting
+
+Provide examples before asking the real question.
+
+---
+
+## Sentiment Analysis Example
+
+```text
+Review: Amazing product
+Sentiment: Positive
+
+Review: Terrible support
+Sentiment: Negative
+
+Review: Good quality
+Sentiment: Positive
+
+Review: Delivery was late
+Sentiment:
+```
+
+Model learns the pattern.
+
+Output:
+
+```text
+Negative
+```
+
+---
+
+# Why Few-Shot Works
+
+You're teaching the model the format.
+
+Instead of:
+
+```text
+Do sentiment analysis
+```
+
+you show:
+
+```text
+Input → Output
+Input → Output
+Input → Output
+```
+
+and the model continues the pattern.
+
+---
+
+# Production Example
+
+Suppose you're building an interview preparation app.
+
+Prompt:
+
+```text
+Question:
+What is a closure?
+
+Expected Style:
+- Definition
+- Example
+- Interview Follow-up
+```
+
+The model learns the response format.
+
+---
+
+# Chain of Thought (CoT)
+
+This is one of the biggest prompting breakthroughs.
+
+Instead of:
+
+```text
+Solve:
+A shop sells 10 apples for ₹100.
+How much for 15 apples?
+```
+
+Ask:
+
+```text
+Solve step by step.
+```
+
+Now the model reasons:
+
+```text
+10 apples = ₹100
+
+1 apple = ₹10
+
+15 apples = ₹150
+```
+
+Result:
+
+```text
+₹150
+```
+
+Much higher accuracy.
+
+---
+
+# Why CoT Works
+
+The model generates intermediate reasoning.
+
+```text
+Problem
+↓
+Reasoning
+↓
+Answer
+```
+
+instead of
+
+```text
+Problem
+↓
+Answer
+```
+
+---
+
+# Advanced CoT
+
+Example:
+
+```text
+Think step by step.
+
+You are a senior software architect.
+
+Analyze:
+1. Scalability
+2. Security
+3. Performance
+4. Cost
+```
+
+The model follows a structured reasoning path.
+
+---
+
+# Tree of Thoughts (ToT)
+
+Even more advanced.
+
+Instead of one reasoning path:
+
+```text
+Problem
+ ↓
+Answer
+```
+
+Generate multiple paths:
+
+```text
+Problem
+  ↓
+Option A
+Option B
+Option C
+  ↓
+Compare
+  ↓
+Best Answer
+```
+
+Used in advanced agents.
+
+---
+
+# Structured Output Prompting
+
+Bad:
+
+```text
+Analyze this resume.
+```
+
+Better:
+
+```text
+Return JSON:
+
+{
+  "strengths": [],
+  "weaknesses": [],
+  "recommendations": []
+}
+```
+
+This is heavily used in AI applications.
+
+---
+
+# Role Prompting
+
+Example:
+
+```text
+Act as:
+- Principal Engineer
+- Walmart Interviewer
+- System Design Expert
+
+Review this architecture.
+```
+
+The role gives context and expectations.
+
+---
+
+# Delimiter Prompting
+
+Use separators.
+
+```text
+<requirements>
+Build an ecommerce system.
+</requirements>
+
+<constraints>
+100M users
+Multi-region
+</constraints>
+```
+
+Models perform better when information is clearly separated.
+
+---
+
+# Prompt Template Used in Real AI Apps
+
+```text
+SYSTEM:
+You are a senior software architect.
+
+CONTEXT:
+{retrieved_documents}
+
+USER QUESTION:
+{question}
+
+INSTRUCTIONS:
+- Use only the provided context.
+- If unsure, say you don't know.
+- Provide references.
+```
+
+This is essentially how many RAG systems work.
+
+---
+
+# Common Prompting Techniques
+
+| Technique           | Purpose                                 |
+| ------------------- | --------------------------------------- |
+| Zero-Shot           | Direct question                         |
+| Few-Shot            | Learn pattern from examples             |
+| Chain of Thought    | Step-by-step reasoning                  |
+| Role Prompting      | Assign expertise                        |
+| Structured Output   | JSON/XML responses                      |
+| Delimiter Prompting | Separate sections                       |
+| RAG Prompting       | Inject retrieved context                |
+| Self-Consistency    | Generate multiple solutions and compare |
+
+---
+
+# For AI Engineers in 2026
+
+The most valuable prompting skills are:
+
+1. Writing strong system prompts
+2. Designing few-shot examples
+3. Structured JSON outputs
+4. RAG prompt construction
+5. Tool-calling prompts
+6. Agent planning prompts
+
+Prompt engineering is still useful, but the industry is shifting toward:
+
+```text
+Prompt Engineering
+        +
+RAG
+        +
+Tool Calling
+        +
+Agents
+        +
+Evaluation Frameworks
+```
+
+That's the modern AI application stack.
+
+### Quick Quiz
+
+1. What is the difference between a **system prompt** and a **user prompt**?
+
+2. When would you use **few-shot prompting** instead of zero-shot?
+
+3. Why does **chain-of-thought** often improve reasoning accuracy?
+
+4. Suppose you're building your Vector DB Agent using FastAPI + LangChain + Qdrant. Which prompt section should contain retrieved documents:
+
+   * A) System
+   * B) Context
+   * C) User Question
+
+Answer these, and then we can move to **tool calling, function calling, and agent prompting**, which is where most production AI engineering happens today.
+

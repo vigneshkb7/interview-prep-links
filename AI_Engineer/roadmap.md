@@ -1,32 +1,16 @@
 
-**LLM API fundamentals**
 
-- [x] How models actually work (just enough)
-- [ ] Tokens, context windows, attention — mental model only
-- [ ] Prompt engineering: system/user roles, few-shot, chain-of-thought
-- [ ] Temperature, top-p, stop sequences, max_tokens
-- [ ] OpenAI SDK + Anthropic SDK (both — interviewers test either)
-- [ ] Streaming responses with SSE / async iterables
-- [ ] Rate limits, retries, exponential backoff
 
-Your edge: You already know async JS and HTTP deeply — streaming LLM responses is just SSE over fetch.
-
-**AI-native UI patterns**
-
-- [ ]  Streaming UX, generative interfaces
-- [ ] Streaming text: incremental rendering, cursor animation, token-by-token display
-- [ ] AI chat interfaces: message threading, history management, context window budget
-- [ ] Generative UI: rendering structured LLM output as dynamic components
 
 ## LLM API fundamentals
 
-- [ ] How models actually work (just enough)
-- [ ] Tokens, context windows, attention — mental model only
-- [ ] Prompt engineering: system/user roles, few-shot, chain-of-thought
+- [x] How models actually work (just enough)
+- [x] Tokens, context windows, attention — mental model only
+- [x] Prompt engineering: system/user roles, few-shot, chain-of-thought
 - [ ] Temperature, top-p, stop sequences, max_tokens
 - [ ] OpenAI SDK + Anthropic SDK (both — interviewers test either)
-- [ ] Streaming responses with SSE / async iterables
-- [ ] Rate limits, retries, exponential backoff
+- [x] Streaming responses with SSE / async iterables
+- [x] Rate limits, retries, exponential backoff
 
 *Your edge: You already know async JS and HTTP deeply — streaming LLM responses is just SSE over fetch.*
 
@@ -110,7 +94,7 @@ Your edge: You already know async JS and HTTP deeply — streaming LLM responses
 ## API & backend patterns
 
 - [ ]Productionizing LLM endpoints
-- Streaming API routes (Node.js + ReadableStream / TransformStream)
+- [x] Streaming API routes (Node.js + ReadableStream / TransformStream)
 - Middleware: auth, rate limiting, cost budgeting per user
 - Caching: semantic cache (embeddings similarity), exact cache (Redis)
 - Queue-based async jobs for long LLM tasks (BullMQ / SQS)
@@ -142,47 +126,53 @@ Your edge: You already know async JS and HTTP deeply — streaming LLM responses
 
 ## MLOps & serving basics
 
-- Know enough to work with ML platform teams
-- Model serving: vLLM, TGI (Text Generation Inference), Triton
-- Inference optimization: quantization (GPTQ, AWQ), batching, KV cache
-- GPU basics: why A100 vs H100, VRAM constraints, tensor parallelism
-- Containerizing ML workloads: Docker + CUDA, multi-stage builds
-- Kubernetes for ML: GPU node pools, resource requests, autoscaling
+- [ ] Know enough to work with ML platform teams
+- [ ] Model serving: vLLM, TGI (Text Generation Inference), Triton
+- [ ] Inference optimization: quantization (GPTQ, AWQ), batching, KV cache
+- [ ] GPU basics: why A100 vs H100, VRAM constraints, tensor parallelism
+- [ ] Containerizing ML workloads: Docker + CUDA, multi-stage builds
+- [ ] Kubernetes for ML: GPU node pools, resource requests, autoscaling
 - Model registries: MLflow, Weights & Biases, HF Hub
 
 
 ## Data pipelines for AI
 
-- Where the real leverage is for AI systems at scale
-- ETL for AI: document ingestion at scale (PDFs, HTML, structured data)
-- Apache Airflow / Prefect for orchestrating ingestion pipelines
-- Data quality: deduplication, noise detection, schema validation
-- Synthetic data generation for fine-tuning datasets
-- Feature stores for ML: Feast, Tecton concepts
+- [ ] Where the real leverage is for AI systems at scale
+- [ ] ETL for AI: document ingestion at scale (PDFs, HTML, structured data)
+- [ ] Apache Airflow / Prefect for orchestrating ingestion pipelines
+- [ ] Data quality: deduplication, noise detection, schema validation
+- [ ] Synthetic data generation for fine-tuning datasets
+- [ ] Feature stores for ML: Feast, Tecton concepts
 - Streaming pipelines: Kafka + real-time embedding updates
 
 
 ## Multi-agent systems
 
-- Staff-level system design territory
-- Supervisor-worker agent architectures
-- Agent communication: shared memory, message passing, tool handoffs
-- Parallelism: fan-out / fan-in agent patterns
-- Long-running agent state: checkpointing, resumability
-- Human-in-the-loop: approval gates, interrupts, corrections
+- [ ] Staff-level system design territory
+- [ ] Supervisor-worker agent architectures
+- [ ] Agent communication: shared memory, message passing, tool handoffs
+- [ ] Parallelism: fan-out / fan-in agent patterns
+- [ ] Long-running agent state: checkpointing, resumability
+- [ ] Human-in-the-loop: approval gates, interrupts, corrections
 - Cost and latency optimization across multi-agent pipelines
 
 
 ## Multimodal & specialized
 
-- Expanding the surface area of what you can build
-- Vision models: GPT-4V, Claude vision, Gemini — image + text inputs
-- Audio: Whisper for STT, TTS with OpenAI / ElevenLabs
-- Code generation: interpreter patterns, sandboxed execution
-- Structured extraction: extracting data from documents at scale
-- Graph RAG: knowledge graphs as retrieval substrate
-- MCP (Model Context Protocol): emerging standard for tool integration
+- [ ] Expanding the surface area of what you can build
+- [ ] Vision models: GPT-4V, Claude vision, Gemini — image + text inputs
+- [ ] Audio: Whisper for STT, TTS with OpenAI / ElevenLabs
+- [ ] Code generation: interpreter patterns, sandboxed execution
+- [ ] Structured extraction: extracting data from documents at scale
+- [ ] Graph RAG: knowledge graphs as retrieval substrate
+- [ ] MCP (Model Context Protocol): emerging standard for tool integration
 
+**AI-native UI patterns**
+
+- [ ]  Streaming UX, generative interfaces
+- [ ] Streaming text: incremental rendering, cursor animation, token-by-token display
+- [ ] AI chat interfaces: message threading, history management, context window budget
+- [ ] Generative UI: rendering structured LLM output as dynamic components
 
 ## Coding / ML systems rounds
 
